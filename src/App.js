@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { UsernameForm } from "./components/usernameForm";
+import { tokenCheck } from "./utils";
 import "./App.css";
 import { PicFeed } from "./components/picFeed";
 
@@ -20,26 +21,24 @@ const App = () => {
     };
 
     useEffect(() => {
+        // this line checks if local storage has a key value of the userToken
+        // then run the tokenCheck function, if not, it does nothing.
+        if (localStorage.key("userToken")) {
+            tokenCheck(setUser)
+        };
         fetchPics(setPics);
     }, []);
 
-    const adduser = async (username, email, password) => {
-        try {
-            const res = await fetch("http://localhost/user")
-        } catch (error) {
-            
-        }
-    }
 
     return (
         <div className="App">
             {/* && is a logical operator. It checks if something is true and does something. */}
             {/* If false, it does nothing */}
             {user && <h1>{user}</h1>}
-            <UsernameForm setUser={setUser}/>
-            {user && pics.map((pic, i) => {
-                return <PicFeed key={i} pic={pic} />;
-            })}
+            <UsernameForm setUser={setUser} />
+            {pics.map((pic, i) => {
+                    return <PicFeed key={i} pic={pic} />;
+                })}
         </div>
     );
 };
