@@ -21,3 +21,34 @@ img {
   width: 50%;
   height:auto  
 }
+
+input {
+  padding: 7px;
+  border-radius: 7px;
+  text-align: center;
+  font-size: 1rem;
+}
+
+button {
+  padding: 7px;
+  border-radius: 7px;
+  text-align: center;
+  font-size: 1rem;
+}
+
+.author {
+  font-size: 1.4rem;
+	text-transform: uppercase;
+  color: rgb(77, 77, 77);
+}
+
+.top-title h1 {
+	font-size: 3rem;
+	text-transform: uppercase;
+	color: rgb(150, 150, 150);
+}
+
+.top-title h1 span {
+	color: rgb(77, 77, 77);
+}
+

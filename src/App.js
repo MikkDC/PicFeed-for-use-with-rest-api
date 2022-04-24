@@ -12,7 +12,7 @@ const App = () => {
 
     const fetchPics = async (setPics) => {
         try {
-            const res = await fetch("https://picsum.photos/v2/list");
+            const res = await fetch("https://picsum.photos/v2/list?page=7");
             const data = await res.json();
             setPics(data);
         } catch (error) {
@@ -24,21 +24,26 @@ const App = () => {
         // this line checks if local storage has a key value of the userToken
         // then run the tokenCheck function, if not, it does nothing.
         if (localStorage.key("userToken")) {
-            tokenCheck(setUser)
-        };
+            tokenCheck(setUser);
+        }
         fetchPics(setPics);
     }, []);
-
 
     return (
         <div className="App">
             {/* && is a logical operator. It checks if something is true and does something. */}
             {/* If false, it does nothing */}
+            <div className="top-title">
+                <a href="#home">
+                    <h1>Pic <span>Feed</span></h1>
+                </a>
+            </div>
+
             {user && <h1>{user}</h1>}
             <UsernameForm setUser={setUser} />
             {pics.map((pic, i) => {
-                    return <PicFeed key={i} pic={pic} />;
-                })}
+                return <PicFeed key={i} pic={pic} />;
+            })}
         </div>
     );
 };
